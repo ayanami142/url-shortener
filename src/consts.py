@@ -1,3 +1,4 @@
+import os
 import re
 
 URL_REGEX = re.compile(
@@ -12,5 +13,6 @@ URL_REGEX = re.compile(
 
 URL_HOST_REGEX = "(?:http.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*"
 
-REDIS_HOST = "localhost"
-REDIS_PORT = 6379
+
+SQLALCHEMY_DATABASE_PATH = os.path.abspath(os.path.join(__file__, "../.."))
+SQLALCHEMY_DATABASE_URI = "sqlite:///" + SQLALCHEMY_DATABASE_PATH + "/app.db"

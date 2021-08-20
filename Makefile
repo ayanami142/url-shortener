@@ -13,10 +13,13 @@ run:  ## Run development environment
 	cd src && ./env/bin/python main.py
 
 setup:  ## install requirements
-	./env/bin/pip install -r requirements.txt
+	./env/bin/python -m pip install -U pip && ./env/bin/pip install -r requirements.txt
 
 isort:  ## sort imports
 	cd src && isort .
 
 black:  ## reformat code
 	cd src && black .
+
+migrate: ## apply migrations
+	cd src && flask db upgrade
