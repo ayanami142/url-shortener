@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, redirect, request
 
 from shortener import UrlShortener
 
@@ -6,7 +6,7 @@ app = Flask(__name__)
 shortener = UrlShortener()
 
 
-@app.route('/shorten_url', methods=["POST"])
+@app.route("/shorten_url", methods=["POST"])
 def shorten_url():
     content = request.json
     url = content.get("url")
@@ -16,7 +16,7 @@ def shorten_url():
     return {"shortened_url": full_url}
 
 
-@app.route('/<shorten>', methods=["GET"])
+@app.route("/<shorten>", methods=["GET"])
 def redirect_to_url(shorten: str):
     base_url = shortener.shorten_to_url(shorten)
     if not base_url:
@@ -30,4 +30,4 @@ def redirect_to_url(shorten: str):
 
 
 if __name__ == "__main__":
-    app.run(threading=3)
+    app.run(threaded=3)

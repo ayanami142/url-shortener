@@ -1,9 +1,9 @@
-from flask import make_response, jsonify, abort
+import base64
+
+import redis
+from flask import abort, jsonify, make_response
 
 from consts import REDIS_HOST, REDIS_PORT, URL_REGEX
-import redis
-import base64
-from redis.exceptions import ConnectionError
 
 
 class UrlShortener:
@@ -58,7 +58,7 @@ class UrlShortener:
         response = make_response(jsonify(message=msg), code)
         abort(response)
 
-    def check_url_and_raise_errors(self, url: str) -> bool:
+    def check_url_and_raise_errors(self, url: str) -> None:
         """Check if url is valid or raise an error
         Valid url examples:
             https://www.domain.dom:5000/hello
@@ -66,12 +66,12 @@ class UrlShortener:
             google.com
             localhost
         :param str url: url from request
-        :return bool: valid or not valid
+        :return None
         """
         if not url:
             self.raise_error("Url can not be empty", 400)
 
         try:
-            return URL_REGEX.match(url).span()[1] - URL_REGEX.match(url).span()[0] == len(url)
+            URL_REGEX.match(url).span()[1] - URL_REGEX.match(url).span()[0] == len(url)
         except AttributeError:
             self.raise_error("Url should be valid", 400)
