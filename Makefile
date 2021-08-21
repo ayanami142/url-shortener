@@ -9,11 +9,14 @@ endif
 help:
 	@grep -E '^[a-zA-Z0-9_.-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-run:  ## Run development environment
-	cd src && ./env/bin/python main.py
+run-dev:  ## Run development environment
+	./env/bin/python run.py
+
+run-prod:  ## Run production environment
+	gunicorn -w 4 run:app
 
 setup:  ## install requirements
-	./env/bin/python -m pip install -U pip && ./env/bin/pip install -r requirements.txt
+	python3 -m virtualenv env && source ./env/bin/activate && ./env/bin/python -m pip install -U pip && ./env/bin/pip install -r requirements.txt
 
 isort:  ## sort imports
 	cd src && isort .
