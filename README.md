@@ -5,6 +5,8 @@
 ## Dependencies
     - Python > 3.6
     - Sqlite
+    - Virtualenv
+    - Gunicorn (for production)
 
 # Quickstart
 1. Clone repository from Github:
