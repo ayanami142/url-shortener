@@ -117,6 +117,8 @@ But when we will use Gunicorn in production, we can set the number of workers vi
 It helps us to works with i.e 4 workers and scale handling requests by 4 times (depends on CPU)
 
 Also, we can use Async workers like Greenlets, but we should adapt our application and database for this.
+
+And other way is use Docker, for scale our application and run many containers with the same database
 #### 4. I used Sqlite instead of Postgres or MySql because it's to easier and faster for development. In real situation Postgres would be better :)
 
 
