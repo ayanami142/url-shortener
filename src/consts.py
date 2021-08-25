@@ -16,3 +16,4 @@ URL_HOST_REGEX = "(?:http.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*"
 
 SQLALCHEMY_DATABASE_PATH = os.path.abspath(os.path.join(__file__, "../.."))
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + SQLALCHEMY_DATABASE_PATH + "/app.db"
+SQLALCHEMY_TEST_DATABASE_URI = "sqlite:///" + SQLALCHEMY_DATABASE_PATH + "/test.db"

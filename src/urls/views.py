@@ -48,7 +48,7 @@ def redirect_to_url(shorten: str):
     """
     base_url: Url = Url.query.filter_by(id=shorten).first()
     if not base_url:
-        raise_error("Invalid short code", 400)
+        raise_error("Short code was not found", 404)
 
     # check if url starts with http or https and add that to url because Flask can not redirect
     # outside the application without that protocols

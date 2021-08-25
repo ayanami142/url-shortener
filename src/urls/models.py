@@ -24,6 +24,18 @@ class Url(db.Model):
         byte_url = self.base_address.encode("UTF-8")
         return base64.b64encode(byte_url).decode("UTF-8")[len(byte_url) - length :]
 
+    @staticmethod
+    def generate_short_url_from_link(url: str = "", length: int = 10) -> str:
+        """
+        Generate random string from ascii letters and digits
+        The same logic like in generate_short_url but as helper static method
+        :param url: base url
+        :param int length: length of random string, 10 by default
+        :return str: generated string
+        """
+        byte_url = url.encode("UTF-8")
+        return base64.b64encode(byte_url).decode("UTF-8")[len(byte_url) - length :]
+
     def add_view_if_not_exists(self, ip: str) -> None:
         """
         Find existing view with the same url and ip or create new instance

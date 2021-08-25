@@ -5,11 +5,16 @@ from src import consts, urls
 from src.db import db
 
 
-def create_app():
+def create_app(test=False):
     app = Flask(__name__.split(".")[0])
-    app.config["SQLALCHEMY_DATABASE_URI"] = consts.SQLALCHEMY_DATABASE_URI
+    if test:
+        app.config["TESTING"] = True
+        app.config["SQLALCHEMY_DATABASE_URI"] = consts.SQLALCHEMY_TEST_DATABASE_URI
+    else:
+        app.config["SQLALCHEMY_DATABASE_URI"] = consts.SQLALCHEMY_DATABASE_URI
 
     db.init_app(app)
+    app.app_context().push()
     migrate = Migrate()
     migrate.init_app(app, db)
 
