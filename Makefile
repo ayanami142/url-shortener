@@ -27,5 +27,5 @@ black:  ## reformat code
 migrate: ## apply migrations
 	cd src && flask db upgrade
 
-test: ## run unit tests
+tests: ## run unit tests
 	./env/bin/python -m unittest discover -s src/tests -t src/tests

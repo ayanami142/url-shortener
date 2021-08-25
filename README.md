@@ -43,6 +43,15 @@ Check other useful commands in Makefile for development
     make Makefile help
 ```
 
+# Tests
+```bash
+make Makefile tests
+```
+or 
+```bash
+python -m unittest discover -s src/tests -t src/tests
+```
+
 # API Documentation
 ### 1. Convert url to shorten:
 ```http
@@ -122,5 +131,3 @@ And other way is use Docker, for scale our application and run many containers w
 #### 4. I used Sqlite instead of Postgres or MySql because it's to easier and faster for development. In real situation Postgres would be better :)
 
 
-## TODO
-- Unit tests
