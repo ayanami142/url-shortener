@@ -1,6 +1,7 @@
+from random import randint
+
 from src.tests.base_test import BaseTestCase
 from src.urls.models import Url, View
-from random import randint
 
 
 class TestGetTop10Urls(BaseTestCase):
@@ -35,7 +36,9 @@ class TestGetTop10Urls(BaseTestCase):
 
             # generate {counter}" number of views for each shorten with random ip
             for _ in range(1, view_counter):
-                shorten.add_view_if_not_exists(ip=f"127.0.{randint(0, 100)}.{randint(0, 100)}")
+                shorten.add_view_if_not_exists(
+                    ip=f"127.0.{randint(0, 100)}.{randint(0, 100)}"
+                )
             view_counter -= 1
 
     def test_get_ten_urls_from_top(self):

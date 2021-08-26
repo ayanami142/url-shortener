@@ -6,8 +6,11 @@ class TestGetCountOfViews(BaseTestCase):
     def setUp(self) -> None:
         super(TestGetCountOfViews, self).setUp()
 
-        shorten_list = [Url(base_address="https://google.com"), Url(base_address="https://facebook.com"),
-                        Url(base_address="https://github.com")]
+        shorten_list = [
+            Url(base_address="https://google.com"),
+            Url(base_address="https://facebook.com"),
+            Url(base_address="https://github.com"),
+        ]
 
         views_counter = 10
         for shorten in shorten_list:

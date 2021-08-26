@@ -40,7 +40,11 @@ class TestView(BaseTestCase):
 
     def test_adding_view_for_new_shorten(self):
         """Assert that view adds to url when url has been created"""
-        response = self.client.post("/shorten_url", data=json.dumps({"url": "facebook.com"}), headers=self.headers)
+        response = self.client.post(
+            "/shorten_url",
+            data=json.dumps({"url": "facebook.com"}),
+            headers=self.headers,
+        )
         new_shorten = response.json.get("shortened_url").split("/")[-1]
         views_count = View.query.filter_by(url_id=new_shorten).count()
 
